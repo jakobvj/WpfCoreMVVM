@@ -7,6 +7,50 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!-- Sidder vores datacontext til at være vores MainWindowViewModel, og som source benytter vi vores 
+             ViewModelLocator vi registrerede som en application resource i vores App.xaml fil  -->
+        <DockPanel LastChildFill="True" DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
 
+            <ListBox DockPanel.Dock="Left" ItemsSource="{Binding AnsatteList}" DisplayMemberPath="Navn" SelectedItem="{Binding SelectedAnsat}" Width="100" />
+
+            <DockPanel DockPanel.Dock="Bottom">
+                <Button DockPanel.Dock="Left" Content="Hent ansatte" Width="200" Height="25" Command="{Binding LoadAnsatteCommand}" />
+                <Button DockPanel.Dock="Right" Content="Gem ansatte" Width="200" Height="25" Command="{Binding SaveAnsatteCommand}" />
+            </DockPanel>
+
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Height" Value="25" />
+                        <Setter Property="Margin" Value="10,10,0,0" />
+                    </Style>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="ID" />
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedAnsat.ID}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Navn" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedAnsat.Navn}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Alder" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedAnsat.Alder}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Løn" />
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedAnsat.Loen}" />
+            </Grid>
+        </DockPanel>
     </Grid>
 </Window>

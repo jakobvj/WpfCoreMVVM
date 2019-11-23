@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfCoreMVVM"
+             xmlns:vm="clr-namespace:WpfCoreMVVM.Utillity"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+        <!--Definerer vores ViewModelLocator som en application resource-->
+            <vm:ViewModelLocator x:Key="Locator" />
+        </Application.Resources>
 </Application>
